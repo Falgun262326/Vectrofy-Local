@@ -1,0 +1,204 @@
+.carouselWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 490px;
+  height: 150px;
+}
+
+.carouselContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width:490px;
+  height: 150px;
+  background-color: #404040;
+  border-radius: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.path6{
+    position: absolute;
+    width: 6vw;
+    right: 100px;
+    top: 10px;
+}
+
+.path6-2{
+    position: absolute;
+    width: 3vw;
+    left: 150px;
+    bottom: 10px;
+    rotate: 180deg;
+}
+
+.carouselTrack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out; /* Smooth sliding transition */
+}
+
+.scrollButton {
+  background-color: #404040;
+  border-radius: 2px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 25px;
+  color: white;
+  z-index: 3; /* Ensure the main button is on top */
+  transition: all 300ms;
+  border: none;
+  margin-right: 1.5px;
+  position: relative; /* Add position: relative to create a stacking context */
+}
+
+.nextButton{
+    overflow: hidden;
+}
+
+.prevButton{
+    overflow: hidden;
+}
+
+.buttonContainer{
+    inset: 2px;
+    background-color: #404040;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    align-items: center;
+}
+
+.nextButton::before {
+  content: "";
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:linear-gradient(#0fb7ff, #0fb7ff,#0fb7ff, transparent,transparent );
+  border-radius: 2px;
+  top: -50%;
+  left: -50%;
+  z-index: -1; /* Ensure the pseudo-element is behind the main button */
+  transition: all 500ms;
+  transform-origin: bottom right;
+  animation: borderAnimationBtn1Part1 6s linear infinite;
+}
+.nextButton::after {
+  content: "";
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:linear-gradient(#0fb7ff, #0fb7ff,#0fb7ff, transparent,transparent );
+  border-radius: 2px;
+  top: -50%;
+  left: -50%;
+  z-index: -1; /* Ensure the pseudo-element is behind the main button */
+  transition: all 500ms;
+  transform-origin: bottom right;
+  animation: borderAnimationBtn1Part2 6s linear infinite;
+  animation-delay: 3s;
+}
+
+.nextButton:hover::before{
+    opacity: 1;
+}
+
+.nextButton:hover::after{
+    opacity: 1;
+}
+
+@keyframes borderAnimationBtn1Part1 {
+    0%{
+        transform: rotate(0deg);
+    }100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes borderAnimationBtn1Part2 {
+    0%{
+        transform: rotate(0deg);
+    }100%{
+        transform: rotate(360deg);
+    }
+}
+
+.prevButton::before {
+  content: "";
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:linear-gradient(#ffeb0f, #ffeb0f,#ffeb0f, transparent,transparent );
+  border-radius: 2px;
+  top: -50%;
+  left: -50%;
+  z-index: -1; /* Ensure the pseudo-element is behind the main button */
+  transition: all 500ms;
+  transform-origin: bottom right;
+  animation: borderAnimationBtn2Part1 6s linear infinite;
+}
+.prevButton::after {
+  content: "";
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:linear-gradient(#ffeb0f, #ffeb0f,#ffeb0f, transparent,transparent );
+  border-radius: 2px;
+  top: -50%;
+  left: -50%;
+  z-index: -1; /* Ensure the pseudo-element is behind the main button */
+  transition: all 500ms;
+  transform-origin: bottom right;
+  animation: borderAnimationBtn2Part2 6s linear infinite;
+  animation-delay: 3s;
+}
+
+.prevButton:hover::before{
+    opacity: 1;
+}
+
+.prevButton:hover::after{
+    opacity: 1;
+}
+
+@keyframes borderAnimationBtn2Part1 {
+    0%{
+        transform: rotate(0deg);
+    }100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes borderAnimationBtn2Part2 {
+    0%{
+        transform: rotate(0deg);
+    }100%{
+        transform: rotate(360deg);
+    }
+}
+
+.btnGroup {
+  display: flex;
+  position: absolute;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 100px;
+  right: -50px;
+}
+
+.emptyCarouselText{
+    font-family: headingFont;
+    font-size: 1.5em;
+    margin-left: 40px;
+    color: white;
+}

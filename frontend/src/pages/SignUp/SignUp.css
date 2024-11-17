@@ -1,0 +1,178 @@
+.signUpBackground{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    position: absolute;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #262626;
+}
+
+.signUp{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 350px;
+    height: 400px;
+    /* background-color: black; */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.signUpContainer{
+    inset: 2px;
+    background-color: #303030;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+    border-radius: 10px;
+    transition: all 300ms;
+    font-family: bodyFont;
+}
+
+.path4Form1{
+    position: absolute;
+    transform: rotate(20deg);
+    z-index: -1;
+    width: 8em;
+    left: -30px;
+    top: -10px;
+}
+
+.path4Form2{
+    position: absolute;
+    transform: rotate(180deg);
+    z-index: -1;
+    width: 9em;
+    right: -30px;
+    bottom: -10px;
+}
+
+.signUpContainer h2{
+    color: white;
+    text-align: center;
+    font-family: headingFont;
+    font-size: 2em;
+}
+
+.signUp::before {
+  content: "";
+  opacity: 1;
+  position: absolute;
+  width: 200%;
+  height: 300%;
+  background:linear-gradient(transparent,#b6be13,#b6be13,#b6be13, #b6be13,transparent, transparent,transparent );
+  /* background-color:#0fb7ff; */
+  transform:rotate(-45deg);
+  top: -520px;
+  left: -450px;
+  z-index: 1;
+  transition: all 500ms;
+  transform-origin: left;
+  animation: borderAnimationForm 10s linear infinite;
+}
+
+@keyframes borderAnimationForm {
+    0%{
+        top: -520px;
+        left: -450px;  
+    }100%{
+        top: 550px;
+        left: 470px;
+    }
+}
+
+.inputBox{
+    position: relative;
+    width: 250px;
+    margin: 20px;
+}
+
+.inputBox input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    color: white;
+    font-size: 1em;
+    background-color: #303030;
+    border: 0.1px solid #b6be13;
+}
+
+.inputBox .inputBoxSpan{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    color: gray;
+    text-transform: capitalize;
+    font-size: 1em;
+    transition: all 300ms;
+}
+
+.thirdInputBox{
+    margin-bottom: 5px;
+}
+
+.inputBox input:valid ~ .inputBoxSpan,
+.inputBox input:focus ~ .inputBoxSpan{
+    color: #b6be13;
+    transform: translateX(10px) translateY(-7px);
+    background-color: #303030;
+    border-inline: 0.1px solid #b6be13;
+    font-size: 0.65em;
+    padding: 0px 5px;
+    letter-spacing: 0.2em;
+}
+
+.formLinks{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #04eaff; */
+    margin-inline: 20px;
+    top: -30px;
+    font-size: 0.8em;
+}
+
+.formLinksSignIn{
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-inline: 20px;
+    top: -30px;
+    font-size: 0.8em;
+}
+
+.formLinks a, .formLinksSignIn a{
+    text-decoration: underline #b6be13;
+    color: white;
+}
+
+.submitBtn{
+    border: none;
+    outline: none;
+    background-color: #303030;
+    color: white;
+    margin: 20px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 1px solid #b6be13;
+    cursor: pointer;
+    font-family: bodyFont;
+    transition: all 300ms;
+}
+
+.submitBtn:hover{
+    background-color: #b6be13;
+    color: black;
+    filter: drop-shadow(0px 0px 10px #b6be13);
+}

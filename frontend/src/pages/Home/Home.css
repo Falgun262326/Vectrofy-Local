@@ -1,0 +1,62 @@
+.windowBackground{
+    width: 100vw;
+    position: absolute;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #262626;
+}
+
+.homeContainer{
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+    height: calc(100vh - 15vh);
+    top: calc(15vh + 20px);
+    background-color: #262626;
+}
+
+.rangeBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.path1{
+    position: absolute;
+    z-index: 3;
+    width: 30vw;
+    top: -50px;
+    left: -110px;
+    transform: rotate(45deg);
+}
+
+.path2{
+    position: absolute;
+    z-index: 3;
+    width: 30vw;
+    top: 80px;
+    right: -240px;
+    transform: rotate(150deg);
+}
+
+.path3{
+    position: absolute;
+    z-index: 3;
+    width: 25vw;
+    bottom: -50px;
+    left: -50px;
+}
+
+.path5{
+    position: absolute;
+    z-index: 3;
+    width: 35vw;
+    bottom: -60px;
+    right: -90px;
+}
+

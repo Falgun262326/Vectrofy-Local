@@ -1,0 +1,69 @@
+.imageCard {
+  width: 165px;
+  height: 165px;
+  background-color: transparent;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageRoundedContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 20px;
+  /* background-color: red; */
+  overflow: hidden;
+  position: relative;
+  box-shadow: 5px 5px 15px 0px #222;
+  transition: all 300ms;
+}
+
+.imageCardImage{
+  max-width: 120px;
+  max-height: 120px;
+  object-fit: cover;
+}
+
+.imageRoundedContainer:hover{
+  border-radius: 0px;
+}
+
+.imageOptions{
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  bottom: -30px;
+  background-image: linear-gradient(to top, black,black,black,transparent);
+  transition: all 300ms;
+}
+
+.imageRoundedContainer:hover .imageOptions {
+  bottom: 0;
+}
+
+.editImageButton{
+  border: none;
+  outline: none;
+  margin-right: 10px;
+  font-size: 13px;
+  background-color: transparent;
+  cursor: pointer;
+  color: white;
+}
+
+.deleteImageButton{
+  border: none;
+  outline: none;
+  margin-right: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: transparent;
+  color: red;
+}

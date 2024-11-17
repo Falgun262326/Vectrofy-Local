@@ -1,0 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+    font-family: logoFont;
+    src: url(assets/fonts/Bluerabbit-Regular.ttf);
+}
+
+@font-face {
+    font-family: headingFont;
+    src: url(assets/fonts/DeliusSwashCaps-Regular.ttf);
+}
+
+@font-face {
+    font-family: bodyFont;
+    src: url(assets/fonts/Nunito-SemiBold.ttf);
+}
