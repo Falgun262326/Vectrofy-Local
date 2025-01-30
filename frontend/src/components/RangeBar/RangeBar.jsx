@@ -15,13 +15,13 @@ const RangeBar = (props) => {
         <div className="rangeBarContainer">
             <input
                 type="range"
-                min="0"
-                max="255"
+                min="2"
+                max="20"
                 value={value}
                 className={props.className}
                 onChange={handleChange}
             />
-            {/* <p>Value: {value}</p> */}
+            <p className='rangeValue'>Colors {value}</p>
         </div>
     );
 };

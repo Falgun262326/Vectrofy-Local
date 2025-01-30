@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './Home.css'
-import { useNavigate } from 'react-router-dom';
 import path1 from '../../assets/illustrations/path1.png';
 import path2 from '../../assets/illustrations/path2.png';
 import path3 from '../../assets/illustrations/path3.png';
@@ -9,17 +8,8 @@ import Carousel from '../../components/Carousel/Carousel';
 import Navbar from '../../components/Navbar/Navbar';
 import PreviewContainer from '../../components/previewContainer/PreviewContainer';
 
-
-
 const Home = () => {
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        const userId = sessionStorage.getItem('id');
-        if (!userId) {
-            navigate('/signin');  // Redirect to login if no user ID is found
-        }
-    }, [navigate]);
     return (
         <div className='windowBackground'>
             <Navbar />

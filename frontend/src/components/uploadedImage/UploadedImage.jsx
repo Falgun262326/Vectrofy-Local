@@ -50,7 +50,7 @@ const UploadedImage = (props) => {
 
     return (
         <div className="imageCard">
-            <div className="imageRoundedContainer">
+            <div className="imageRoundedContainer" onClick={handleEditClick}>
                 <img src={props.image} alt='uploaded images' className='imageCardImage' />
                 <div className="imageOptions">
                     <button className="editImageButton" onClick={handleEditClick}><FiEdit2 /></button>

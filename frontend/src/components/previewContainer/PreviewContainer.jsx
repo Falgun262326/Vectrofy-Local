@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import LivePreview from '../../components/livePreview/LivePreview';
 import './PreviewContainer.css';
 import RangeBar from '../RangeBar/RangeBar';
@@ -9,8 +9,8 @@ import path7 from '../../assets/illustrations/path7.png';
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { LuDownload } from "react-icons/lu";
 import axios from 'axios';
-
-let userId = sessionStorage.getItem("id");
+import { useDropzone } from 'react-dropzone'
+import Cookies from 'js-cookie';
 
 const PreviewContainer = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const PreviewContainer = () => {
     const clickedImageId = useSelector((state) => state.images.clickedImageId);
     const clickedImageRange = useSelector((state) => state.images.clickedImageRange);
     const [image, setImage] = useState("");
-    const [threshold, setThreshold] = useState(128);
+    const [threshold, setThreshold] = useState(10);
 
     useEffect(() => {
         if (clickedImage) {
@@ -30,12 +30,27 @@ const PreviewContainer = () => {
         }
     }, [clickedImage, clickedImageRange]);
 
+    const Id = Cookies.get('userId');
+    let userId = null;
+
+    if (Id) {
+        try {
+            const parsedUserId = JSON.parse(Id);
+            userId = parsedUserId?.userId || null;
+        } catch (error) {
+            console.error("Failed to parse userId cookie:", error);
+        }
+    }
+
+    // console.log("userId:", userId);
+
+
     const convertFile = (e) => {
         try {
             let reader = new FileReader();
             reader.readAsDataURL(e.target.files[0]);
             reader.onload = () => {
-                console.log(reader.result);
+                // console.log(reader.result);
                 setImage(reader.result)
             }
             reader.onerror = (error) => {
@@ -50,7 +65,7 @@ const PreviewContainer = () => {
 
     const uploadImage = () => {
         document.getElementById('fileInput').click();
-        handleThresholdChange(125)
+        handleThresholdChange(8)
     };
 
     const handleThresholdChange = (value) => {
@@ -100,7 +115,7 @@ const PreviewContainer = () => {
 
 
         } else {
-            fetch("http://localhost:5000/api/v2/upload-image", {
+            await fetch("http://localhost:5000/api/v2/upload-image", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -126,7 +141,7 @@ const PreviewContainer = () => {
         formData.append('file', document.querySelector('#fileInput').files[0]);
         formData.append('threshold', threshold);
 
-        fetch("http://127.0.0.1:8080/convert", {
+        await fetch("http://127.0.0.1:8080/convert", {
             method: 'POST',
             body: formData
         })
@@ -154,9 +169,8 @@ const PreviewContainer = () => {
         }, 300);
     }
 
-    const getImage = () => {
-        const userId = sessionStorage.getItem("id"); // Retrieve the user ID from session storage
-        fetch(`http://localhost:5000/api/v2/get-image?id=${userId}`, { // Pass the user ID in the query string
+    const getImage = async () => {
+        await fetch(`http://localhost:5000/api/v2/get-image?id=${userId}`, {
             method: 'GET',
         })
             .then((res) => {
@@ -175,7 +189,40 @@ const PreviewContainer = () => {
             .catch((error) => console.error('Error:', error));
     }
 
-    getImage()
+    useEffect(() => {
+        getImage();
+    },);
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop: useCallback((acceptedFiles) => {
+            // Call convertFile logic directly with the dropped file
+            if (acceptedFiles.length > 0) {
+                const file = acceptedFiles[0]; // Only take the first file
+                processDroppedFile(file);
+            }
+        }, []),
+        accept: 'image/png, image/jpeg, image/jpg',
+    });
+
+    const processDroppedFile = (file) => {
+        const validMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+        if (!validMimeTypes.includes(file.type)) {
+            console.error('Invalid file type:', file.type);
+            return;
+        }
+
+        try {
+            const reader = new FileReader();
+            reader.readAsDataURL(file); // Convert to base64
+            reader.onload = () => setImage(reader.result);
+            reader.onerror = (error) => console.error('File read error:', error);
+        } catch (error) {
+            console.error('Error processing dropped file:', error);
+        }
+    };
+
+
+
 
     return (
         <div className="previewContainer">
@@ -187,14 +234,28 @@ const PreviewContainer = () => {
                 <img src={path7} className='path7' alt='designIcon' />
             </div>
 
-            <div className="rangeBar">
-                <RangeBar className='slider1' color={'red'} onChange={handleThresholdChange} value={threshold} />
-            </div>
 
-            useEffect(() => {
-                <LivePreview image={image} />
-            }, [image,uploadImage,clickedImage])
 
+            {image ? (
+                <>
+                    <div className="rangeBar">
+                        <RangeBar className='slider1' color={'red'} onChange={handleThresholdChange} value={threshold} />
+                    </div>
+                    <LivePreview image={image} />
+                </>
+            ) :
+                <>
+                    <div className={`dropContainer ${isDragActive ? 'dropContainerHover' : ''}`}
+                        {...getRootProps()}>
+                        <input {...getInputProps()} name='fileInput' type='file' />
+
+                        {
+                            isDragActive ? (<>< AiOutlineCloudUpload className='dropIconActive' /><p className='dropTextActive'>Drop Image!!!</p></>) : (<><p className='dropText'>Drag 'n' Drop Image</p> <AiOutlineCloudUpload className='dropIcon' /></>)
+                        }
+
+                    </div>
+                </>
+            }
 
             {/* Hidden file input */}
             <form>
@@ -205,7 +266,7 @@ const PreviewContainer = () => {
                     // onChange={handleFileChange}
                     onChange={convertFile}
                     name='fileInput'
-                    accept="image/png, image/jpeg"
+                    accept="image/png, image/jpeg, image/jpg"
                 />
             </form>
 
@@ -234,4 +295,3 @@ const PreviewContainer = () => {
 };
 
 export default PreviewContainer;
-

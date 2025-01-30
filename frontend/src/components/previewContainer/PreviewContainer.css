@@ -12,7 +12,10 @@
 }
 
 .rangeBar{
-    margin-top: 20px;
+    position: absolute;
+    top: 0px;
+    width: 250px;
+    height: 60px;
 }
 
 .actionBtn{
@@ -181,4 +184,92 @@
     width: 10vw;
     right: 10px;
     top: 2px;
+}
+
+.dropContainer{
+    z-index: 5;
+    background-color: rgba(65, 65, 65, 0.8);
+    /* background-color: #404040;
+    opacity: 0.7; */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    height: 200px;
+    margin-right: 80px;
+    margin-top: 40px;
+    border: 5px dashed white;
+    border-radius: 20px;
+    font-family: headingFont;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.dropContainer:hover{
+    background-color: #262626;
+    color: white;
+    opacity: 1;
+}
+
+.dropText{
+    transition: all 500ms;
+}
+
+.dropContainer:hover> .dropText{
+    margin-top: 40px;
+}
+
+.dropIcon{
+    position: absolute;
+    font-size: 70px;
+    transition: all 500ms;
+    top: 120px;
+    color: #404040;
+    opacity: 0;
+}
+
+.dropContainer:hover> .dropIcon{
+    top: 90px;
+    opacity: 1;
+    color: white;
+}
+
+.dropContainerHover{
+    background-color: #262626;
+    color: white;
+    opacity: 1;   
+}
+
+.dropTextActive{
+    position: absolute;
+    bottom: 80px;
+    color: rgba(65, 65, 65, 0.8);
+    opacity: 0;
+    animation: dragTextVisible 500ms both ease;
+}
+
+.dropIconActive{
+    color: rgba(65, 65, 65, 0.8);
+    opacity: 0;
+    font-size: 50px;
+    margin-bottom: 50px;
+    animation: dragIconVisible 500ms both ease;
+}
+
+@keyframes dragIconVisible {
+    100%{
+        color: white;
+        opacity: 1;
+        font-size: 100px;
+    }
+}
+
+@keyframes dragTextVisible {
+    100%{
+        color: white;
+        opacity: 1;
+    }
 }

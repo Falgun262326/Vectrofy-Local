@@ -1,0 +1,18 @@
+.LoadingSpinner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom right, #111827, #006400, #2F4F4F);
+}
+
+.loadingSpinnerDiv{
+    width: 64px;
+    height: 64px;
+    border-width: 4px; 
+    border-style: solid; 
+    border-color: #C6FFDD;
+    border-top-color: yellow;
+    border-radius: 50%;
+}

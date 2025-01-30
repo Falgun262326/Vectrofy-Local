@@ -1,6 +1,7 @@
-const router = require("express").Router();
-const List = require("../models/list");
-const User = require("../models/user");
+import express from "express";
+import { List } from "../models/List.js";
+import { User } from "../models/User.js";
+const router = express.Router();
 
 router.post("/upload-image", async (req, res) => {
   const { base64, rangeVal, id } = req.body;
@@ -118,4 +119,4 @@ router.put("/update-image-range/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

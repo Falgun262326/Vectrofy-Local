@@ -1,14 +1,18 @@
 .rangeBarContainer {
   display: flex;
   z-index: 3;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  justify-content:space-around ;
   align-items: center;
-  padding: 10px;
   margin-right: 20px;
+  width: 80%;
+  font-family: headingFont;
+  height: 80%;
+  /* background-color: brown; */
 }
 
 .slider1 {
-  width: 200px;
+  width: 100%;
   appearance: none;
   height: 2px;
   background-color: #f00;
@@ -84,4 +88,9 @@
   aspect-ratio: 1/1;
   width: 25px;
   margin-top: 2px;
+}
+
+.rangeValue{
+  color: whitesmoke;
+  align-self: self-start;
 }
